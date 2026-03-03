@@ -1,9 +1,19 @@
 body {
   margin: 0;
   padding: 0;
-  background: #030712;
-  color: #f1f5f9;
+  background: #f7f7f7;
+  color: #070707;
+  letter-spacing: 0.01em;
 }
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+:root {
+  --nb-bg: #f7f7f7;
+  --nb-surface: #ffffff;
+  --nb-ink: #080808;
+  --nb-accent: #00e5ff;
+  --nb-border: #080808;
+  --nb-shadow: #080808;
 }

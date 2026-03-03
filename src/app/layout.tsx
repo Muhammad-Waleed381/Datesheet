@@ -16,13 +16,14 @@ export default function RootLayout({
       <head>
         <script src="https://cdn.tailwindcss.com" async={false} />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap"
           rel="stylesheet"
         />
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              body { font-family: 'Inter', sans-serif; }
+              body { font-family: 'Space Grotesk', sans-serif; }
+              .font-mono { font-family: 'JetBrains Mono', monospace; }
               @keyframes ping {
                 75%, 100% { transform: scale(2); opacity: 0; }
               }

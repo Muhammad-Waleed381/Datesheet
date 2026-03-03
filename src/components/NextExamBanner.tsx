@@ -42,25 +42,22 @@ export default function NextExamBanner() {
       className="flex justify-center mb-10"
     >
       <div
-        className="flex items-center gap-3 px-5 py-2.5 rounded-full text-sm font-medium"
+        className="flex flex-wrap items-center gap-3 px-5 py-3 text-sm font-semibold border-[3px] border-black bg-white shadow-[6px_6px_0_0_#080808]"
         style={{
-          background: "rgba(59,130,246,0.08)",
-          border: "1px solid rgba(59,130,246,0.25)",
-          backdropFilter: "blur(8px)",
+          outline: "3px solid #00e5ff",
+          outlineOffset: "-7px",
         }}
       >
-        {/* Pulsing dot */}
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400" />
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full bg-[#00e5ff] opacity-75" />
+          <span className="relative inline-flex h-2.5 w-2.5 bg-[#00e5ff]" />
         </span>
-        <span className="text-slate-400">Next exam:</span>
-        <span className="text-white font-semibold">{next.course}</span>
+        <span className="text-black/70 uppercase tracking-wider text-xs">Next exam</span>
+        <span className="text-black">{next.course}</span>
         <span
-          className="px-2.5 py-0.5 rounded-full text-xs font-bold"
+          className="px-2.5 py-1 text-xs font-extrabold border-2 border-black bg-[#00e5ff] text-black uppercase tracking-wide"
           style={{
-            background: "rgba(59,130,246,0.18)",
-            color: "#93c5fd",
+            boxShadow: "2px 2px 0 #080808",
           }}
         >
           {label}

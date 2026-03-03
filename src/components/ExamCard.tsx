@@ -34,7 +34,7 @@ function Digit({ value, color }: { value: number; color: string }) {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 14, opacity: 0 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className={`font-mono font-bold text-2xl tabular-nums ${color}`}
+        className={`font-mono font-bold text-2xl tabular-nums ${color} leading-none`}
       >
         {padded}
       </motion.span>
@@ -65,7 +65,7 @@ function Countdown({ datetime, color }: CountdownProps) {
         <motion.span
           animate={{ scale: [1, 1.08, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-emerald-400 font-bold text-sm tracking-wide"
+          className="text-black bg-[#00e5ff] border-2 border-black px-2 py-1 font-bold text-sm tracking-wide uppercase"
         >
           Exam Day!
         </motion.span>
@@ -85,20 +85,18 @@ function Countdown({ datetime, color }: CountdownProps) {
       {units.map((u, i) => (
         <div key={u.label} className="flex flex-col items-center gap-0.5">
           <div
-            className="w-14 h-12 rounded-lg flex items-center justify-center overflow-hidden relative"
+            className="w-14 h-12 flex items-center justify-center overflow-hidden relative border-2 border-black bg-white shadow-[2px_2px_0_0_#080808]"
             style={{
-              background: "rgba(2,6,23,0.7)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              transform: `translate(${i % 2 === 0 ? "-1px" : "1px"}, 0)`,
             }}
           >
-            {/* Shine line */}
             <div
               className="absolute left-0 right-0 top-1/2 h-px"
-              style={{ background: "rgba(0,0,0,0.5)" }}
+              style={{ background: "rgba(0,0,0,0.25)" }}
             />
             <Digit value={u.value} color={color} />
           </div>
-          <span className="text-[9px] font-semibold uppercase tracking-widest text-slate-600">
+          <span className="text-[9px] font-bold uppercase tracking-widest text-black/70">
             {u.label}
           </span>
         </div>
@@ -118,43 +116,36 @@ export default function ExamCard({ exam, index }: ExamCardProps) {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-      whileHover={{ y: -6, scale: 1.02 }}
-      className={`relative rounded-2xl overflow-hidden cursor-default group transition-shadow duration-300 hover:shadow-2xl ${exam.accent.glow}`}
+      whileHover={{ x: -3, y: -3 }}
+      className="relative overflow-hidden cursor-default group border-[3px] border-black bg-white shadow-[8px_8px_0_0_#080808] transition-all duration-150"
       style={{
-        background: "rgba(15, 23, 42, 0.6)",
-        backdropFilter: "blur(12px)",
-        border: "1px solid rgba(255,255,255,0.07)",
+        outline: "3px solid transparent",
       }}
     >
-      {/* Accent left bar */}
       <div
-        className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${exam.accent.bar} opacity-80`}
+        className="absolute left-0 top-0 bottom-0 w-2 bg-[#00e5ff]"
       />
 
-      {/* Top glow on hover */}
       <div
-        className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${exam.accent.bar} opacity-0 group-hover:opacity-60 transition-opacity duration-500`}
+        className="absolute top-0 left-0 right-0 h-1 bg-black opacity-85"
       />
 
       <div className="p-6 pl-7">
-        {/* Badge */}
         <span
-          className={`inline-block px-3 py-1 text-xs font-bold rounded-full mb-3 ${exam.accent.badge} ${exam.accent.badgeText} tracking-wider`}
+          className="inline-block px-3 py-1 text-xs font-extrabold mb-3 tracking-wider border-2 border-black bg-[#00e5ff] text-black"
+          style={{ boxShadow: "2px 2px 0 #080808" }}
         >
           {exam.code}
         </span>
 
-        {/* Course title */}
-        <h2 className="text-lg font-bold text-white mb-1 leading-snug">{exam.course}</h2>
+        <h2 className="text-lg font-bold text-black mb-1 leading-snug uppercase">{exam.course}</h2>
 
-        {/* Faculty */}
-        <p className="text-slate-500 text-xs mb-5">
+        <p className="text-black/70 text-xs mb-5 font-medium">
           Instructor:{" "}
-          <span className="text-slate-300 font-medium">{exam.faculty}</span>
+          <span className="text-black font-bold">{exam.faculty}</span>
         </p>
 
-        {/* Date & time row */}
-        <div className="flex items-center gap-4 text-xs text-slate-400 mb-6">
+        <div className="flex items-center gap-4 text-xs text-black/75 mb-6 font-semibold">
           <span className="flex items-center gap-1.5">
             <svg className="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -169,18 +160,16 @@ export default function ExamCard({ exam, index }: ExamCardProps) {
           </span>
         </div>
 
-        {/* Countdown */}
         <div
-          className="rounded-xl p-4 flex flex-col items-center gap-2"
+          className="p-4 flex flex-col items-center gap-2 border-[3px] border-black bg-[#f8f8f8]"
           style={{
-            background: "rgba(2,6,23,0.5)",
-            border: "1px solid rgba(255,255,255,0.05)",
+            boxShadow: "4px 4px 0 #080808",
           }}
         >
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-600 mb-1">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-black/70 mb-1">
             Time Remaining
           </p>
-          <Countdown datetime={exam.datetime} color={exam.accent.countdown} />
+          <Countdown datetime={exam.datetime} color="text-black" />
         </div>
       </div>
     </motion.div>
