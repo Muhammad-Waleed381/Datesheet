@@ -1,0 +1,99 @@
+export type Exam = {
+  course: string;
+  code: string;
+  faculty: string;
+  date: string;
+  timeStr: string;
+  datetime: string;
+  accent: {
+    border: string;
+    glow: string;
+    badge: string;
+    badgeText: string;
+    bar: string;
+    countdown: string;
+  };
+};
+
+export const exams: Exam[] = [
+  {
+    course: "Compiler Construction",
+    code: "CS-346",
+    faculty: "Yusra Arshad",
+    date: "09-03-2026",
+    timeStr: "09:30 – 11:30",
+    datetime: "2026-03-09T09:30:00",
+    accent: {
+      border: "hover:border-blue-500/60",
+      glow: "hover:shadow-blue-500/20",
+      badge: "bg-blue-500/15 border border-blue-500/30",
+      badgeText: "text-blue-300",
+      bar: "from-blue-500 to-blue-400",
+      countdown: "text-blue-400",
+    },
+  },
+  {
+    course: "Parallel & Distributed Computing",
+    code: "CS-347",
+    faculty: "Shah Khalid",
+    date: "10-03-2026",
+    timeStr: "12:15 – 14:15",
+    datetime: "2026-03-10T12:15:00",
+    accent: {
+      border: "hover:border-purple-500/60",
+      glow: "hover:shadow-purple-500/20",
+      badge: "bg-purple-500/15 border border-purple-500/30",
+      badgeText: "text-purple-300",
+      bar: "from-purple-500 to-purple-400",
+      countdown: "text-purple-400",
+    },
+  },
+  {
+    course: "Deep Learning",
+    code: "CS-419",
+    faculty: "Mehwish Awan",
+    date: "11-03-2026",
+    timeStr: "09:30 – 11:30",
+    datetime: "2026-03-11T09:30:00",
+    accent: {
+      border: "hover:border-emerald-500/60",
+      glow: "hover:shadow-emerald-500/20",
+      badge: "bg-emerald-500/15 border border-emerald-500/30",
+      badgeText: "text-emerald-300",
+      bar: "from-emerald-500 to-emerald-400",
+      countdown: "text-emerald-400",
+    },
+  },
+  {
+    course: "Cyber Security / Big Data",
+    code: "CS-360",
+    faculty: "Madiha Khalid",
+    date: "12-03-2026",
+    timeStr: "12:15 – 14:15",
+    datetime: "2026-03-12T12:15:00",
+    accent: {
+      border: "hover:border-rose-500/60",
+      glow: "hover:shadow-rose-500/20",
+      badge: "bg-rose-500/15 border border-rose-500/30",
+      badgeText: "text-rose-300",
+      bar: "from-rose-500 to-rose-400",
+      countdown: "text-rose-400",
+    },
+  },
+  {
+    course: "Software Engineering",
+    code: "SE-200",
+    faculty: "Hirra Anwar",
+    date: "16-03-2026",
+    timeStr: "09:30 – 11:30",
+    datetime: "2026-03-16T09:30:00",
+    accent: {
+      border: "hover:border-amber-500/60",
+      glow: "hover:shadow-amber-500/20",
+      badge: "bg-amber-500/15 border border-amber-500/30",
+      badgeText: "text-amber-300",
+      bar: "from-amber-500 to-amber-400",
+      countdown: "text-amber-400",
+    },
+  },
+];
