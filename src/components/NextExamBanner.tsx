@@ -31,8 +31,8 @@ export default function NextExamBanner() {
         ? "Less than an hour away!"
         : `${hours}h away`
       : days === 1
-      ? "Tomorrow"
-      : `${days} days away`;
+        ? "Tomorrow"
+        : `${days} days away`;
 
   return (
     <motion.div
@@ -54,6 +54,9 @@ export default function NextExamBanner() {
         </span>
         <span className="text-black/70 uppercase tracking-wider text-xs">Next exam</span>
         <span className="text-black">{next.course}</span>
+        {next.seating && (
+          <span className="text-black/60 italic text-xs">@ {next.seating.venue}</span>
+        )}
         <span
           className="px-2.5 py-1 text-xs font-extrabold border-2 border-black bg-[#00e5ff] text-black uppercase tracking-wide"
           style={{

@@ -1,0 +1,9 @@
+
+/home/waleedtastic/Desktop/Datesheet-1/src/app/layout.tsx
+  18:9  warning  Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font  @next/next/no-page-custom-font
+
+/home/waleedtastic/Desktop/Datesheet-1/src/components/FlipUnit.tsx
+  12:50  warning  'accentColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+

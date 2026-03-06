@@ -5,6 +5,11 @@ export type Exam = {
   date: string;
   timeStr: string;
   datetime: string;
+  seating?: {
+    venue: string;
+    column: number;
+    row: number;
+  };
   accent: {
     border: string;
     glow: string;
@@ -23,6 +28,11 @@ export const exams: Exam[] = [
     date: "09-03-2026",
     timeStr: "09:30 – 11:30",
     datetime: "2026-03-09T09:30:00",
+    seating: {
+      venue: "SEECS_SEECS Labs_Computing-1",
+      column: 3,
+      row: 3,
+    },
     accent: {
       border: "hover:border-blue-500/60",
       glow: "hover:shadow-blue-500/20",
@@ -39,6 +49,11 @@ export const exams: Exam[] = [
     date: "10-03-2026",
     timeStr: "12:15 – 14:15",
     datetime: "2026-03-10T12:15:00",
+    seating: {
+      venue: "SEECS_Class Room_05",
+      column: 8,
+      row: 1,
+    },
     accent: {
       border: "hover:border-purple-500/60",
       glow: "hover:shadow-purple-500/20",
@@ -55,6 +70,11 @@ export const exams: Exam[] = [
     date: "11-03-2026",
     timeStr: "09:30 – 11:30",
     datetime: "2026-03-11T09:30:00",
+    seating: {
+      venue: "SEECS_Class Room_13",
+      column: 4,
+      row: 2,
+    },
     accent: {
       border: "hover:border-emerald-500/60",
       glow: "hover:shadow-emerald-500/20",
@@ -71,6 +91,11 @@ export const exams: Exam[] = [
     date: "12-03-2026",
     timeStr: "12:15 – 14:15",
     datetime: "2026-03-12T12:15:00",
+    seating: {
+      venue: "IAEC_IAEC_20",
+      column: 6,
+      row: 4,
+    },
     accent: {
       border: "hover:border-rose-500/60",
       glow: "hover:shadow-rose-500/20",
@@ -87,6 +112,11 @@ export const exams: Exam[] = [
     date: "16-03-2026",
     timeStr: "09:30 – 11:30",
     datetime: "2026-03-16T09:30:00",
+    seating: {
+      venue: "SEECS_Class Room_04",
+      column: 9,
+      row: 4,
+    },
     accent: {
       border: "hover:border-amber-500/60",
       glow: "hover:shadow-amber-500/20",
