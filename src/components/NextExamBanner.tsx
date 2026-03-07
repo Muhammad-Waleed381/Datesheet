@@ -38,8 +38,8 @@ export default function NextExamBanner() {
   const label =
     dayDiff === 0
       ? hours === 0
-        ? "Less than an hour away!"
-        : `${hours}h away`
+        ? "Today - less than an hour away!"
+        : `Today - ${hours}h away`
       : dayDiff === 1
       ? "Tomorrow"
       : `${dayDiff} days away`;
