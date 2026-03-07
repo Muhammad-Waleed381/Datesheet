@@ -4,12 +4,22 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { exams } from "@/data/exams";
 
+const MS_IN_DAY = 86400000;
+
 function getNextExam() {
   const now = Date.now();
   return exams
     .map((e) => ({ ...e, ms: new Date(e.datetime).getTime() - now }))
     .filter((e) => e.ms > 0)
     .sort((a, b) => a.ms - b.ms)[0] ?? null;
+}
+
+function getCalendarDayDifference(targetDatetime: string) {
+  const today = new Date();
+  const target = new Date(targetDatetime);
+  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const startOfTarget = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+  return Math.round((startOfTarget.getTime() - startOfToday.getTime()) / MS_IN_DAY);
 }
 
 export default function NextExamBanner() {
@@ -22,17 +32,17 @@ export default function NextExamBanner() {
 
   if (!next) return null;
 
-  const days = Math.floor(next.ms / 86400000);
-  const hours = Math.floor((next.ms % 86400000) / 3600000);
+  const dayDiff = getCalendarDayDifference(next.datetime);
+  const hours = Math.floor((next.ms % MS_IN_DAY) / 3600000);
 
   const label =
-    days === 0
+    dayDiff === 0
       ? hours === 0
         ? "Less than an hour away!"
         : `${hours}h away`
-      : days === 1
-        ? "Tomorrow"
-        : `${days} days away`;
+      : dayDiff === 1
+      ? "Tomorrow"
+      : `${dayDiff} days away`;
 
   return (
     <motion.div
