@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { exams } from "@/data/exams";
+import { Exam } from "@/data/exams";
 
 const MS_IN_DAY = 86400000;
 
-function getNextExam() {
+function getNextExam(exams: Exam[]) {
   const now = Date.now();
   return exams
     .map((e) => ({ ...e, ms: new Date(e.datetime).getTime() - now }))
@@ -22,13 +22,22 @@ function getCalendarDayDifference(targetDatetime: string) {
   return Math.round((startOfTarget.getTime() - startOfToday.getTime()) / MS_IN_DAY);
 }
 
-export default function NextExamBanner() {
-  const [next, setNext] = useState(() => getNextExam());
+interface NextExamBannerProps {
+  exams: Exam[];
+}
+
+export default function NextExamBanner({ exams }: NextExamBannerProps) {
+  const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
-    const id = setInterval(() => setNext(getNextExam()), 30000);
+    const id = setInterval(() => setNow(Date.now()), 30000);
     return () => clearInterval(id);
   }, []);
+
+  const next = useMemo(() => {
+    void now;
+    return getNextExam(exams);
+  }, [exams, now]);
 
   if (!next) return null;
 

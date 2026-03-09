@@ -1,4 +1,5 @@
 export type Exam = {
+  slotId: string;
   course: string;
   code: string;
   faculty: string;
@@ -20,8 +21,18 @@ export type Exam = {
   };
 };
 
-export const exams: Exam[] = [
+export type StudentId = "waleed" | "ahmed_ibrahim";
+
+export const students: Record<StudentId, string> = {
+  waleed: "Waleed",
+  ahmed_ibrahim: "Ahmed Ibrahim",
+};
+
+type ExamOverride = Partial<Pick<Exam, "course" | "code" | "faculty" | "seating">>;
+
+export const baseExams: Exam[] = [
   {
+    slotId: "2026-03-09T09:30:00",
     course: "Compiler Construction",
     code: "CS-346",
     faculty: "Yusra Arshad",
@@ -43,6 +54,7 @@ export const exams: Exam[] = [
     },
   },
   {
+    slotId: "2026-03-10T12:15:00",
     course: "Parallel & Distributed Computing",
     code: "CS-347",
     faculty: "Shah Khalid",
@@ -64,6 +76,7 @@ export const exams: Exam[] = [
     },
   },
   {
+    slotId: "2026-03-11T09:30:00",
     course: "Deep Learning",
     code: "CS-419",
     faculty: "Mehwish Awan",
@@ -85,6 +98,7 @@ export const exams: Exam[] = [
     },
   },
   {
+    slotId: "2026-03-12T12:15:00",
     course: "Cyber Security / Big Data",
     code: "CS-360",
     faculty: "Madiha Khalid",
@@ -106,6 +120,7 @@ export const exams: Exam[] = [
     },
   },
   {
+    slotId: "2026-03-16T09:30:00",
     course: "Software Engineering",
     code: "SE-200",
     faculty: "Hirra Anwar",
@@ -127,3 +142,59 @@ export const exams: Exam[] = [
     },
   },
 ];
+
+export const studentExamOverrides: Record<StudentId, Record<string, ExamOverride>> = {
+  waleed: {},
+  ahmed_ibrahim: {
+    "2026-03-09T09:30:00": {
+      seating: {
+        venue: "SEECS_SEECS Labs_Computing-1",
+        column: 1,
+        row: 1,
+      },
+    },
+    "2026-03-10T12:15:00": {
+      seating: {
+        venue: "SEECS_Class Room_05",
+        column: 2,
+        row: 3,
+      },
+    },
+    "2026-03-11T09:30:00": {
+      seating: {
+        venue: "SEECS_Class Room_13",
+        column: 6,
+        row: 5,
+      },
+    },
+    "2026-03-12T12:15:00": {
+      course: "Cyber Security / Big Data Analytics",
+      code: "CS-404",
+      seating: {
+        venue: "SEECS_Class Room_03",
+        column: 6,
+        row: 5,
+      },
+    },
+    "2026-03-16T09:30:00": {
+      seating: {
+        venue: "SEECS_Class Room_12",
+        column: 1,
+        row: 3,
+      },
+    },
+  },
+};
+
+export function resolveExamsForStudent(studentId: StudentId): Exam[] {
+  const overrides = studentExamOverrides[studentId] ?? {};
+
+  return baseExams
+    .map((exam) => ({
+      ...exam,
+      ...overrides[exam.slotId],
+    }))
+    .sort((a, b) => new Date(a.datetime).getTime() - new Date(b.datetime).getTime());
+}
+
+export const exams = resolveExamsForStudent("waleed");
